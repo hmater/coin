@@ -1,0 +1,174 @@
+<html>
+<head>
+	<title>
+	</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background: linear-gradient(white,black);
+			position: relative;
+
+		}
+
+		.coin div{
+			height: 200px;
+			width: 200px;
+			border-radius: 100px;
+			border: 0px;
+			/*background-color: red;*/
+			position: absolute;
+
+		}	
+
+	 	.coin #gana{
+			-webkit-transform: translateZ(4px);
+			background-image: url('img/cara.jpg');
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+		.coin #pierde{
+			-webkit-transform: rotateY(180deg) rotateZ(180deg) translateZ(4px);
+			background-image: url('img/cruz.jpg');
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+		.coin #fill{
+			
+			-webkit-transform: rotateX(90deg) translateY(0px) translateZ(-100px);
+		}			
+
+		#contenedor{
+			height: 200px;
+			width: 200px;
+			position: absolute;
+			margin: auto;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			-webkit-perspective: 4000px;
+
+		}
+
+
+		@-webkit-keyframes gira {
+		    0% {    
+		    -webkit-transform: rotateX(0) rotateY(0);           
+		    }
+		    25% {    
+		    -webkit-transform: rotateX(180deg) rotateY(20deg);           
+		    }
+		    50% {    
+		    -webkit-transform: rotateX(360deg) rotateY(40deg);           
+		    }  
+		    75% {    
+		    -webkit-transform: rotateX(540deg) rotateY(20deg);           
+		    }      
+		    100% {        
+		    -webkit-transform: rotateX(720deg) rotateY(0deg);       
+		    } 
+		}
+
+
+		@-webkit-keyframes girafast {
+		    0% {    
+		    -webkit-transform: translateZ(0px) rotateX(0);           
+		    }
+		    25% {    
+		    -webkit-transform: translateZ(1500px) rotateX(180deg);           
+		    }
+		    50% {    
+		    -webkit-transform: translateZ(2000px) rotateX(360deg);           
+		    }  
+		    75% {    
+		    -webkit-transform: translateZ(1500px) rotateX(180deg);           
+		    }      
+		    100% {        
+		    -webkit-transform: translateZ(0px) rotateX(0deg);       
+		    } 
+		}
+
+		.coin{
+			height: 200px;
+			width: 200px;
+			background-color: transparent;
+			-webkit-transform-style: preserve-3d;
+		    -webkit-transform-origin: 100px 100px;
+
+		}
+
+
+
+		.slow{
+			-webkit-animation: gira 10s linear infinite;
+
+		}
+		.fast{
+			-webkit-animation: girafast 0.8s linear;
+			-webkit-animation-iteration-count: 1;
+		}
+
+		#fill{
+			/*background-color: red;*/
+			/*background-color: rgb(180,180,10); gabostyle*/
+			background-color: rgb(100,100,100);
+			height: 8px;
+			width: 200px;
+			border-radius: 0px;
+		}
+		#cover_gana{
+			/*background-color: rgb(180,180,10);gabostyle*/
+			/*background-color: green;*/
+			background-color: rgb(100,100,100);
+			border: 0px;
+			-webkit-transform: translateZ(3px);
+		}
+		#cover_pierde{
+			/*background-color: rgb(180,180,10);gabostyle*/
+			/*background-color: blue;*/
+			background-color: rgb(100,100,100);
+			border: 0px;
+			-webkit-transform: translateZ(-3px);
+		}
+
+	</style>
+
+
+</head>
+<body>
+	<div id="contenedor">
+		<div id="coin" class="coin slow" onclick="flip()">
+			<div id="gana"></div>
+			<div id="pierde"></div>
+
+			<div id="cover_gana"></div>
+			<div id="cover_pierde"></div>
+
+			<div id="fill"></div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	function flip(){
+		if(document.getElementById('coin').className == "coin slow"){
+			var x = Math.floor((Math.random() * 2) + 1);
+			if(x==1){
+				document.getElementById('gana').style.backgroundImage = "url('img/cara.jpg')";
+				document.getElementById('pierde').style.backgroundImage = "url('img/cruz.jpg')";
+			}else{
+				document.getElementById('gana').style.backgroundImage = "url('img/cruz.jpg')";
+				document.getElementById('pierde').style.backgroundImage = "url('img/cara.jpg')";
+			};
+			document.getElementById('coin').className = "coin fast";
+		}else{
+			document.getElementById('coin').className = "coin slow";
+		}
+		
+	}
+</script>
+
+</body>
+</html>
